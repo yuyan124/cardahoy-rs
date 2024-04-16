@@ -1,31 +1,11 @@
-[package]
-name = "cardahoy-scanner"
-version = "0.1.0"
-edition = "2021"
+[workspace]
+resolver = "2"
+members = [
+    "cardahoy-api",
+    "cardahoy-crypto",
+    "cardahoy-scanner",
+    "cardahoy-utils",
+]
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-aes = "0.7.5"
-anyhow = "1.0.82"
-base64 = "0.22.0"
-block-modes = "0.8.1"
-chrono = "0.4.37"
-comfy-table = "7.1.1"
-futures = "0.3.30"
-hex = "0.4.3"
-hex-literal = "0.3.3"
-openssl = "0.10.64"
-rand = "0.8.5"
-reqwest = { version = "0.12.3", features = ["json"] }
-rsa = "0.9.6"
-serde = { version = "1.0.197", features = ["derive"] }
-serde_json = "1.0.115"
-strum = "0.26.2"
-strum_macros = "0.26.2"
-tokio = { version = "1.37.0", features = ["full"] }
-toml = "0.8.12"
-tracing = "0.1.40"
-tracing-appender = "0.2.3"
-tracing-subscriber = "0.3.18"
-uuid = { version = "1.8.0", features = ["v4"] }
