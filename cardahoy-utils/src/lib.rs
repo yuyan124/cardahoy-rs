@@ -13,6 +13,9 @@ pub struct Config {
     pub client_app_id: String,
     pub authorization: String,
     pub cookies: String,
+    pub faction: Vec<String>,
+    pub rarity: Vec<String>,
+    pub foil: Vec<String>,
 }
 
 impl Config {
