@@ -1302,6 +1302,19 @@ pub fn get_card_by_id(id: NftCardId) -> Option<&'static NftCard> {
     }
 }
 
+pub fn get_card_by_name(name: &str) -> Option<&'static NftCard> {
+    match NFT_CARD_MAP.get() {
+        Some(map) => {
+            let find_card = map.iter().filter(|(_, card)| card.name_en == name);
+            match find_card.last() {
+                Some(card) => Some(card.1),
+                None => None,
+            }
+        }
+        None => None,
+    }
+}
+
 pub fn filter_cards(
     category: Option<HashSet<NftCardCategory>>,
     colors: Option<HashSet<NftCardColor>>,
