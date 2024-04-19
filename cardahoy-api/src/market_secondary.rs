@@ -1,4 +1,4 @@
-use super::{nft, Discrete};
+use super::{filter::Discrete, nft};
 use anyhow::Result;
 use serde::Deserialize;
 use serde_json::json;
@@ -71,6 +71,7 @@ impl super::CardsAhoyApi {
         &self,
         nft_id: nft::NftId,
         page: u32,
+        page_size: u32,
         sort_type: nft::NftSortType,
         discrete_list: &Vec<Discrete>,
     ) -> Result<MarketSecondaryResponse> {
@@ -79,7 +80,7 @@ impl super::CardsAhoyApi {
             "discreteList": json!(discrete_list),
             "continuityList":[],
             "pageNumber":page,
-            "pageSize":20,
+            "pageSize":page_size,
             "sortType": sort_type as u32,
         });
 
