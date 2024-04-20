@@ -1,0 +1,9 @@
+client_app_id = ""
+authorization = ""
+cookies = ""
+# Neutral, Animal, Plant, Zombie, Mech, Dragon
+faction = ["Neutral", "Animal"]
+# Common, Rare, Epic, Legendary
+rarity = ["Common", "Rare"]
+# Regular, Gold
+foil = ["Regular", "Gold"]
