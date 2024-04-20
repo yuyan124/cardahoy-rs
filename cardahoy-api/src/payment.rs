@@ -11,7 +11,7 @@ pub struct PaymentTypeDetail {
     pub market_url: Option<String>,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Hash, PartialEq, Eq, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct PaymentInfo {
     pub unit: String,

@@ -2,7 +2,6 @@ use crate::nft::NftId;
 
 use super::nft;
 use anyhow::Result;
-use cardahoy_crypto as crypto;
 use cardahoy_utils as utils;
 use serde::{Deserialize, Serialize};
 use serde_json::json;

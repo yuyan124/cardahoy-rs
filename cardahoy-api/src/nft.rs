@@ -1,4 +1,5 @@
 use anyhow::Result;
+use serde::Serialize;
 use std::{
     collections::{HashMap, HashSet},
     sync::OnceLock,
@@ -97,7 +98,7 @@ impl NftCard {
 }
 
 // 该枚举由 script 生成。
-#[derive(Debug, EnumString, EnumIter, Display, PartialEq, Eq, Hash, Copy, Clone)]
+#[derive(Debug, EnumString, EnumIter, Display, PartialEq, Eq, Hash, Copy, Clone, Serialize)]
 pub enum NftCardId {
     #[strum(to_string = "Alarm Bot")]
     AlarmBot = 500,
@@ -794,6 +795,14 @@ impl NftCardId {
             _ => card_id.to_string(),
         };
         Some(name)
+    }
+
+    pub fn to_vec() -> Vec<NftCardId> {
+        NftCardId::iter().map(|card| card).collect()
+    }
+
+    pub fn to_vec_u32() -> Vec<u32> {
+        NftCardId::iter().map(|card| card as u32).collect()
     }
 }
 

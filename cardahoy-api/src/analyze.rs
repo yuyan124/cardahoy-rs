@@ -47,19 +47,19 @@ pub struct FloorPrice {
     pub timestamp: u64,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Hash, Eq, PartialEq, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct AnalyzeDealTrendResponse {
     pub nodes: Vec<AnalyzeDealTrendNode>,
     pub payment_info: payment::PaymentInfo,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Hash, Eq, PartialEq, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct AnalyzeDealTrendNode {
     pub max_value: String,
     pub total_value: String,
-    pub timestamp: u64,
+    pub timestamp: i64,
     pub avg_value: String,
     pub count: u32,
     pub min_value: String,
@@ -226,10 +226,16 @@ impl super::CardsAhoyApi {
     pub async fn query_analyze_deal_trend(
         &self,
         nft_id: nft::NftId,
+        nft_card_id: u32,
     ) -> Result<AnalyzeDealTrendResponse> {
+        let nft_card_id = if nft_card_id == 0 {
+            String::new()
+        } else {
+            nft_card_id.to_string()
+        };
         let payload = json!({
             "chainNftId": nft_id as u32,
-            "categoryId":"",
+            "categoryId": nft_card_id,
             "timeRange": "7d",
         });
         let result = self
