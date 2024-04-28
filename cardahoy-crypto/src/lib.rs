@@ -2,10 +2,13 @@ use aes::Aes128;
 use anyhow::Result;
 use base64::{engine::general_purpose, Engine as _};
 use block_modes::{BlockMode, Ecb};
-use openssl::rsa::Rsa;
 use rand::{distributions::Alphanumeric, thread_rng, Rng};
+#[cfg(not(feature = "openssl"))]
 use rsa::{pkcs8::DecodePublicKey, Pkcs1v15Encrypt, RsaPublicKey};
 use std::str;
+
+#[cfg(feature = "openssl")]
+use openssl::rsa::Rsa;
 
 use block_modes::block_padding::Pkcs7;
 type Aes128Ecb = Ecb<Aes128, Pkcs7>;
@@ -54,6 +57,7 @@ pub fn aes_ecb_decrypt(encrypted_data: &[u8], key: &str) -> Result<Vec<u8>> {
     Ok(decrypted_data)
 }
 
+#[cfg(not(feature = "openssl"))]
 pub fn rsa_pkcs1_encrypt(message: &str, pem: &str) -> Result<Vec<u8>> {
     if !pem.starts_with("-----BEGIN PUBLIC KEY-----") {
         return Err(anyhow::anyhow!("Invalid PEM format"));
@@ -69,6 +73,7 @@ pub fn rsa_pkcs1_encrypt(message: &str, pem: &str) -> Result<Vec<u8>> {
     Ok(enc_data)
 }
 
+#[cfg(feature = "openssl")]
 pub fn rsa_encrypt(message: &str, pem: &str) -> Result<Vec<u8>> {
     if !pem.starts_with("-----BEGIN PUBLIC KEY-----") {
         return Err(anyhow::anyhow!("Invalid PEM format"));
