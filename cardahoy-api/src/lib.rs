@@ -56,16 +56,25 @@ impl CardsAhoyApi {
     pub fn new() -> Result<CardsAhoyApi> {
         let config = utils::Config::new();
         let client = reqwest::Client::builder()
-        .user_agent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.0.0")
-        .default_headers({
-            let mut headers = header::HeaderMap::new();
-            headers.insert("Authorization-Token",header::HeaderValue::from_str(&config.authorization)?,);
-            headers.insert("Client-App-Id", header::HeaderValue::from_str(&config.client_app_id)?);
-            headers.insert("Cookie", header::HeaderValue::from_str(&config.cookies)?);
-            headers.insert("Content-Type", header::HeaderValue::from_static("application/json"));
-            headers
-        })
-        .build()?;
+            .user_agent(&config.user_agent)
+            .default_headers({
+                let mut headers = header::HeaderMap::new();
+                headers.insert(
+                    "Authorization-Token",
+                    header::HeaderValue::from_str(&config.authorization)?,
+                );
+                headers.insert(
+                    "Client-App-Id",
+                    header::HeaderValue::from_str(&config.client_app_id)?,
+                );
+                headers.insert("Cookie", header::HeaderValue::from_str(&config.cookies)?);
+                headers.insert(
+                    "Content-Type",
+                    header::HeaderValue::from_static("application/json"),
+                );
+                headers
+            })
+            .build()?;
 
         Ok(CardsAhoyApi { client })
     }

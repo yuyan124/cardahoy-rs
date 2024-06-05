@@ -597,8 +597,6 @@ impl NftCardId {
             Self::EpicMiracleEggGold => "史诗奇迹蛋 (金)",
             Self::LegendaryMiracleEgg => "传奇奇迹蛋",
             Self::LegendaryMiracleEggGold => "传奇奇迹蛋 (金)",
-            Self::DeceptionDragon => "诡计幻龙",
-            Self::DeceptionDragonGold => "诡计幻龙 (金)",
             //Dragon
             Self::NaughtyDragon => "淘气龙",
             Self::NaughtyDragonGold => "淘气龙 (金)",
@@ -624,6 +622,8 @@ impl NftCardId {
             Self::ShadowDragonGold => "暗影龙 (金)",
             Self::StormDragon => "暴风龙",
             Self::StormDragonGold => "暴风龙 (金)",
+            Self::DeceptionDragon => "诡计幻龙",
+            Self::DeceptionDragonGold => "诡计幻龙 (金)",
             Self::RockDragon => "摇滚龙",
             Self::RockDragonGold => "摇滚龙 (金)",
             Self::TerraDragon => "大地龙",
