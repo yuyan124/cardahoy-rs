@@ -13,6 +13,7 @@ pub struct Config {
     pub client_app_id: String,
     pub authorization: String,
     pub cookies: String,
+    pub user_agent: String,
     pub faction: Vec<String>,
     pub rarity: Vec<String>,
     pub foil: Vec<String>,

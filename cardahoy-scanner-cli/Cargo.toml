@@ -1,0 +1,16 @@
+[package]
+name = "cardahoy-scanner-cli"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cardahoy-api = { path = "../cardahoy-api" }
+cardahoy-scanner = { path = "../cardahoy-scanner", features = ["xlsxwriter"] }
+tracing = "0.1.40"
+tracing-appender = "0.2.3"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+anyhow = "1.0.82"
+tokio = { version = "1.37.0", features = ["full"] }
+clap = { version = "4.5.4", features = ["derive"] }

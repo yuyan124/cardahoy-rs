@@ -5,6 +5,7 @@ members = [
     "cardahoy-crypto",
     "cardahoy-scanner",
     "cardahoy-utils",
+    "cardahoy-scanner-cli",
 ]
 
 
